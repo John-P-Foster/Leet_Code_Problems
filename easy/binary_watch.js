@@ -50,7 +50,44 @@ var readBinaryWatch = function(turnedOn) {
 
 testCases = [0,1,8,9,10];
 
-for(let test of testCases){
-    console.log(readBinaryWatch(test))
+// for(let test of testCases){
+//     console.log(readBinaryWatch(test))
+// }
+
+// Trying DFS solution
+function readBinaryWatchDFS(turnedOn){
+
+    results = [];
+
+    // index  [h0, h1, h2, h3, m0, m1, m2, m3, m4, m5]
+    // values [ 1,  2,  4,  8,  1,  2,  4,  8, 16, 32]
+    function dfs(idx, usedLights, hours, minutes) {
+        if (hours >= 12 || minutes >= 60) return;
+        if (usedLights === turnedOn) {
+            results.push(`${hours}:${minutes.toString().padStart(2, '0')}`); 
+            return;
+        }
+
+        // Stop if we've exhausted all 10 LEDs
+        if (idx === 10) return;
+
+        // Option 1: skip this LED
+        dfs(idx + 1, usedLights, hours, minutes);
+
+        // Option 2: turn on this LED (if still valid)
+        if (idx < 4) {
+            // It's an hour LED
+            dfs(idx + 1, usedLights + 1, hours + (1 << idx), minutes);
+        } else {
+            // It's a minute LED
+            dfs(idx + 1, usedLights + 1, hours, minutes + (1 << (idx - 4)));
+        }
+    }
+
+    dfs(0,0,0,0);
+    return results; 
 }
 
+for(let test of testCases){
+    console.log(readBinaryWatchDFS(test))
+}
