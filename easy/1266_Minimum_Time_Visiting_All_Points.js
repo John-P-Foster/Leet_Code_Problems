@@ -38,8 +38,7 @@
  * @return {number}
  */
 var minTimeToVisitAllPoints = function(points) {
-    // compair [x, y] and [x2, y2] sub the difference and move set x, y to the new setting and log the step
-    // count. 
+
     let seconds = 0; 
 
     for(let i = 0; i < points.length -1; i ++){
