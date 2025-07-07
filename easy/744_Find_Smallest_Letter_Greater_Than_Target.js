@@ -48,7 +48,7 @@ var nextGreatestLetterBrute = function(letters, target) {
 
 var nextGreatestLetterBinary = function(letters, target) {
     let left = 0;
-    let right = letters.length - 1;
+    let right = letters.length -1 ;
 
     while (left <= right) {
         let mid = Math.floor((left + right) / 2);
@@ -58,6 +58,11 @@ var nextGreatestLetterBinary = function(letters, target) {
         } else {
             right = mid - 1;
         }
+        console.log("left: ", left);
+        console.log("right: ", right);
+        console.log("mid: ", mid);
+        console.log("character: ", letters[mid])
+        console.log("")
     }
 
     return letters[left % letters.length];
@@ -66,16 +71,17 @@ var nextGreatestLetterBinary = function(letters, target) {
 
 
 let testCases = [
-    ["c","f","j"],
+    ["c","f","h","j","j","k","m","n","z"],
     ["c","f","j"],
     ["x","x","y","y"],
 ]
 
 let targets = [
-    "a",
+    "j",
     "c",
     "z"
 ]
+
 testCases.forEach((test, i) =>{
 console.log(nextGreatestLetterBinary(test, targets[i]))
 });
