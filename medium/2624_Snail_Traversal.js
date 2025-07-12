@@ -78,6 +78,32 @@ Array.prototype.snail = function(rowsCount, colsCount) {
 
 }
 
+Array.prototype.snailCleaner = function(rowsCount, colsCount) {
+    if (rowsCount * colsCount !== this.length) {
+        this.length = 0;
+        return;
+    }
+
+    const matrix = Array.from({ length: rowsCount }, () => new Array(colsCount));
+    let i = 0;
+
+    for (let col = 0; col < colsCount; col++) {
+        if (col % 2 === 0) {
+            // Fill top to bottom
+            for (let row = 0; row < rowsCount; row++) {
+                matrix[row][col] = this[i++];
+            }
+        } else {
+            // Fill bottom to top
+            for (let row = rowsCount - 1; row >= 0; row--) {
+                matrix[row][col] = this[i++];
+            }
+        }
+    }
+
+    this.length = 0;
+    this.push(...matrix);
+};
 
 let testCases = [
     [5, 4, [19, 10, 3, 7, 9, 8, 5, 2, 1, 17, 16, 14, 12, 18, 6, 13, 11, 20, 4, 15]],
