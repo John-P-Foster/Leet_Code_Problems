@@ -71,6 +71,26 @@ var largestGoodIntegerOPT = function(num) {
     return maxGood;
 };
 
+var largestGoodIntegerOPT2 = function(num) {
+    let maxGood = -1;
+    let currentDigit = num[0];
+    let count = 1; 
+    
+    for (let i = 1; i <= num.length; i++) {
+        if(num[i] === currentDigit){
+            count ++;
+            if(count === 3 && +currentDigit > maxGood){
+                maxGood = +currentDigit
+            }
+        }else{
+            currentDigit = num[i]
+            count = 1; 
+        }
+    }
+    
+    return maxGood === -1 ? "" : String(maxGood).repeat(3);
+};
+
 const testCases = [
     ["6777133339", "777"],
     ["2300019", "000" ],
@@ -82,7 +102,7 @@ const testCases = [
 
 let testNumber = 1; 
 for(let [num, expected] of testCases){
-    const returned = largestGoodIntegerOPT(num);
+    const returned = largestGoodIntegerOPT2(num);
     const result = returned === expected ? `Test ${testNumber} ✅ Passed with: ${returned}` : `Test ${testNumber} ❌ Failed with: ${returned}`
     testNumber ++;
     console.log(result); 
