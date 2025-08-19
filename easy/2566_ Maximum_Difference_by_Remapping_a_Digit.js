@@ -87,6 +87,35 @@ function minMaxDifferenceWithString(n) {
     return (maxDigit ? +str.replaceAll(maxDigit, '9') : n) - minNum;
 }
 
+function minMaxDifference2(num){
+    let numArray = []; 
+    while(num > 0){
+        let digit = num % 10; 
+        numArray.push(digit);
+        num = Math.floor( num / 10); 
+    }
+    let firstdigit = numArray[numArray.length -1];
+
+    let min = 0; 
+    let max = 0; 
+    let firstNoneNine = -1; 
+    for(let i = numArray.length; i > 0; i--){
+
+        let minDigit = numArray[i -1] === firstdigit ? 0 : numArray[i - 1];
+        min = (min * 10) + minDigit; 
+
+        let maxDigit = numArray[i - 1]   
+        if(firstNoneNine < 0 && maxDigit != 9){
+            firstNoneNine = maxDigit;
+        }
+        maxDigit = maxDigit === firstNoneNine ? 9 : maxDigit; 
+        max = (max * 10) + maxDigit; 
+ 
+    }
+    
+    return max - min; 
+}
+
 const testCases = [
     [11891, 99009],
     [90, 99],
@@ -96,8 +125,8 @@ const testCases = [
 
 let testNumber = 1; 
 for(let [num, expected] of testCases){
-    const returned = minMaxDifference(num); 
-    const result = returned === expected ? `Test${testNumber} ✅ Passed with: ${returned}` : `Test${testNumber} ❌ Failed with: ${returned}`;
+    const returned = minMaxDifference2(num); 
+    const result = returned === expected ? `Test ${testNumber} ✅ Passed with: ${returned}` : `Test ${testNumber} ❌ Failed with: ${returned}`;
     testNumber ++; 
     console.log(result) 
 }
