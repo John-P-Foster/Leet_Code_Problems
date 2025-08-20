@@ -94,8 +94,8 @@ function minMaxDifference2(num){
         numArray.push(digit);
         num = Math.floor( num / 10); 
     }
+    
     let firstdigit = numArray[numArray.length -1];
-
     let min = 0; 
     let max = 0; 
     let firstNoneNine = -1; 
@@ -112,7 +112,7 @@ function minMaxDifference2(num){
         max = (max * 10) + maxDigit; 
  
     }
-    
+
     return max - min; 
 }
 
