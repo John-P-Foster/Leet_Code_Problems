@@ -71,11 +71,20 @@ var summaryRanges = function(nums) {
     return ranges; 
 };
 
+function sortedArrayWithIncreasingValues(size, max){
+    let array = Array.from({length: size}, () => Math.floor(Math.random() * max))
+    array.sort((a,b) => a - b);
+
+    array = [...new Set(array)]; 
+    return array; 
+}
+
 const testCases = [
     [[0,1,2,4,5,7],["0->2","4->5","7"]],
     [[0,2,3,4,6,8,9],["0","2->4","6","8->9"]],
     [[], []],
-    [[0,2],["0","2"]]
+    [[0,2],["0","2"]],
+    [sortedArrayWithIncreasingValues(300, 100), []]
 ]
 
 let testNumber = 1; 
