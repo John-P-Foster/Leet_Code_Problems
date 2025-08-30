@@ -57,7 +57,48 @@ var minimumCost = function(cost) {
     return min; 
 };
 
+
+
+
+
+
+
+
+
+// Seccond hit:  2025-08-25
+
+/**
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minimumCost2 = function(cost) {
+    let minCost = 0; 
+    cost = cost.sort((a,b)=> b - a); 
+
+    for(let i = 1; i <= cost.length; i ++){
+        if(i % 3 != 0){
+            minCost += cost[i -1];
+        }
+    }
+
+    return minCost; 
+};
+
+
+
+
+
+
+
+
+
+
+// [9,7,6,5,2,2,]
+
+
+
 let testCases = [
+    [[1,2,3],5],
     [[6,5,7,9,2,2], 23],
     [[1,100], 101],
     [[100], 100],
@@ -66,7 +107,7 @@ let testCases = [
 
 let testNumber = 1; 
 for(let[cost, expected] of testCases){
-    const returned = minimumCost(cost); 
+    const returned = minimumCost2(cost); 
     const result = returned === expected ? `Test ${testNumber} ✅ Passed with: ${returned}`: `Test ${testNumber} ❌ Failed with: ${returned}`;
     testNumber ++; 
     console.log(result);
