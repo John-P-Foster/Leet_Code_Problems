@@ -46,6 +46,8 @@
  */
 var shortestCompletingWord = function(licensePlate, words) {
 
+    // Check that need letters count matches letter count in word. 
+    // Returns the word length if completing. 
     const checkWord = function(letters, orginalWord){
         if(letters.length > orginalWord.length) return Infinity; 
         let word = orginalWord
@@ -60,11 +62,13 @@ var shortestCompletingWord = function(licensePlate, words) {
         return orginalWord.length; 
     }
 
+    // Finds the letters needed in licensPlate
     let letters = ""
-    for(char of licensePlate){
+    for(let char of licensePlate){
         letters +=  /[a-zA-Z]/.test(char) ? char.toLowerCase() :"";
     }
 
+    // Finds the shortest word that is completing. 
     let shortestWord = null; 
     for(let word of words){
         shortestWord = (checkWord(letters, word) < (shortestWord?.length ?? Infinity)) ? word : shortestWord
