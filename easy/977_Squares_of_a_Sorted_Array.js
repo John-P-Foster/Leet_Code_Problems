@@ -27,26 +27,26 @@
  */
 var sortedSquares = function(nums) {
 
-   let left = 0; 
-   let right = nums.length - 1;
-   let sorted = new Array(nums.length)
-   let sortedIndex = sorted.length - 1; 
+    let left = 0; 
+    let right = nums.length - 1;
+    let sorted = new Array(nums.length)
+    let sortedIndex = sorted.length - 1; 
 
-   while(left <= right ){
-    const leftSqr = nums[left] ** 2
-    const rightSqr = nums[right] ** 2
+    while(left <= right ){
+        const leftSqr = nums[left] ** 2
+        const rightSqr = nums[right] ** 2
 
-    if(leftSqr > rightSqr){
-        sorted[sortedIndex] = leftSqr 
-        left ++
-    }else{
-        sorted[sortedIndex] = rightSqr
-        right --
+        if(leftSqr > rightSqr){
+            sorted[sortedIndex] = leftSqr 
+            left ++
+        }else{
+            sorted[sortedIndex] = rightSqr
+            right --
+        }
+        sortedIndex --
     }
-    sortedIndex --
-   }
 
-   return sorted; 
+    return sorted; 
 
 };
 
