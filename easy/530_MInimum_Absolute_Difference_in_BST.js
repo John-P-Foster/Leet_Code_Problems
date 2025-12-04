@@ -33,21 +33,23 @@
  * @return {number}
  */
 var getMinimumDifference = function(root) {
-    let min = Infinity; 
-    
-    const searchBST = function(node){
-        if(!node) return; 
-        if(node.left){
-            min = Math.min(min, Math.abs(node.val - node.left.val));
-            searchBST(node.left);
-        }
-        if(node.right){
-            min = Math.min(min, Math.abs(node.val - node.right.val));
-            searchBST(node.right);
-        }
-    }
+    let min = Infinity;
+    let prev = null;
 
-    searchBST(root);
+    const inorder = function(node) {
+        if (!node) return;
+
+        inorder(node.left);
+
+        if (prev !== null) {
+            min = Math.min(min, node.val - prev);
+        }
+        prev = node.val;
+
+        inorder(node.right);
+    };
+
+    inorder(root);
 
     return min; 
 };
