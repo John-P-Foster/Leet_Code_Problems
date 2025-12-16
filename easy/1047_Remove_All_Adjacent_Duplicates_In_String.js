@@ -53,18 +53,20 @@ var removeDuplicates = function(s) {
  * @return {string}
  */
 var removeDuplicatesOpt = function(s) {
-    let stack = new Array(s.length).fill(""); 
+    const stack = new Array(s.length); 
+    const stringArr = s.split('');
     let pointer = 0; 
 
     for(let i = 0; i < s.length; i ++){
-        if (pointer > 0 && stack[pointer - 1] === s[i]) {
+        if (pointer > 0 && stack[pointer - 1] === stringArr[i]) {
             pointer --; 
         }else{
-            stack[pointer] = s[i]; 
+            stack[pointer] = stringArr[i]; 
             pointer ++; 
         }
     }
-    return stack.slice(0, pointer).join('')
+    stack.length = pointer; 
+    return stack.join('')
 };
 
 

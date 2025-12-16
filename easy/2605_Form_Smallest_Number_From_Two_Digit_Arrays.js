@@ -27,27 +27,26 @@
  * @return {number}
  */
 var minNumber = function(nums1, nums2) {
-    let nums1Set = new Set(nums1); // create set of nums1 digits for cross check.
+    let seen = new Array(10).fill(false);
     let nums1Min = Infinity; // find smallest single digit in nums 1. 
     let nums2Min = Infinity; // find the smallest single digit in nums 2.
     let sharedMin = Infinity; 
 
     for(const num of nums1){
+        seen[num] = true; 
         if(num < nums1Min) nums1Min = num;
     }
 
     for(const num of nums2){
-        if(nums1Set.has(num)) sharedMin = num < sharedMin ? num : sharedMin; 
+        if(seen[num] === true) sharedMin = num < sharedMin ? num : sharedMin; 
         if(num < nums2Min) nums2Min = num;
     }
     
     if(sharedMin != Infinity) return sharedMin; 
 
-    if(nums1Min < nums2Min){
-        return nums1Min * 10 + nums2Min
-    }else{
-        return nums2Min * 10 + nums1Min
-    }
+    return nums1Min < nums2Min ?
+        nums1Min * 10 + nums2Min:
+        nums2Min * 10 + nums1Min; 
 
 };
 
