@@ -57,7 +57,7 @@ var findEvenNumbers = function(digits) {
     }
 
         return [...res].sort((a,b) => a - b); 
-    };
+};
 
 const testCases = [
     [[2,1,3,0], [102,120,130,132,210,230,302,310,312,320]],
