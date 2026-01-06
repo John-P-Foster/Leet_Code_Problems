@@ -34,7 +34,7 @@
 var bitwiseComplement = function(n) {
     if (n === 0) return 1; 
 
-    let bitL = Math.floor(Math.log2(n)) + 1;
+    let bitL = Math.floor(Math.log2(n)) + 1; // log2 gets the bit index of the largest bit
     let mask = (1 << bitL) - 1;
 
 
