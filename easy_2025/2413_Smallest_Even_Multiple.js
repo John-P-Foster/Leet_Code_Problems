@@ -25,15 +25,16 @@ var smallestEvenMultiple = function(n) {
 };
 
 const testCases = [
-    [5, 10],
+    [10, 5],
     [6, 6]
 ] 
 
-
-for(let[testNumber, [num, expected]] of testCases.entries()){
-  const returned = smallestEvenMultiple(num);
+const foo = smallestEvenMultiple; 
+testCases.forEach((test, testNumber) => {
+  let [expected, ...params] = test
+  const returned = foo(...params);
   const result = returned.toString() === expected.toString() ? `✅ Passed ` : `❌ Failed`;
   console.log(`Test ${testNumber + 1} ${result}`)
   console.log(`Expected: ${expected}`);
   console.log(`Returned: ${returned}\n`);
-}
+})
