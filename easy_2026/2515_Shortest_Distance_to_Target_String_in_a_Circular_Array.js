@@ -48,7 +48,7 @@
  * @param {number} startIndex
  * @return {number}
  */
-var closestTarget = function(words, target, startIndex) {
+var hamminDistance = function(words, target, startIndex) {
     const n = words.length; 
     let left = startIndex; 
     let right = startIndex; 
@@ -68,7 +68,7 @@ const testCases = [
     [-1, words = ["i","eat","leetcode"], target = "ate", startIndex = 0],
 ] 
 
-const foo = closestTarget; 
+const foo = hamminDistance; 
 testCases.forEach((test, testNumber) => {
   let [expected, ...params] = test
   const returned = foo(...params);
