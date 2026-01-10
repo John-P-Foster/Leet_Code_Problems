@@ -29,7 +29,7 @@
  * @param {number} y
  * @return {number}
  */
-var hammingDistance = function(x, y) {
+var heightChecker = function(x, y) {
     let dist = 0; 
     if(x === y) return dist; 
     let bitLength = Math.floor(Math.log2(Math.max(x, y))) + 1
@@ -53,7 +53,7 @@ const testCases = [
     [1, 0, 1],
 ] 
 
-const foo = hammingDistance; 
+const foo = heightChecker; 
 testCases.forEach((test, testNumber) => {
   let [expected, ...params] = test
   const returned = foo(...params);
