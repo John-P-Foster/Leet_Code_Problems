@@ -34,7 +34,7 @@
  * @return {string}
  */
 var foo = function(day, month, year) {
-    
+
     const date = new Date(year, month - 1, day);
     const dayNumber = date.getDay() 
     const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
@@ -56,3 +56,4 @@ testCases.forEach((test, testNumber) => {
   console.log(`Expected: ${expected}`);
   console.log(`Returned: ${returned}\n`);
 })
+
