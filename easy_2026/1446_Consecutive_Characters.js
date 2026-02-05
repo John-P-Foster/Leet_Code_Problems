@@ -32,8 +32,8 @@ var maxPower = function(s) {
     for(let i = 1; i < s.length; i ++){
         if(s[i] === s[i -1]){
             curPower ++; 
-            maxPower = maxPower > curPower ? maxPower : curPower; 
         }else{
+            maxPower = maxPower > curPower ? maxPower : curPower; 
             curPower = 1; 
         }
     }
@@ -43,7 +43,8 @@ var maxPower = function(s) {
 const testCases = [
     [2, "leetcode"],
     [5, "abbcccddddeeeeedcba"],
-    [1, `letcode`]
+    [1, `letcode`],
+    [2, `cc`]
 
 ]
 
