@@ -51,17 +51,3 @@ var filter = function(arr, fn) {
     return result; 
 };
 
-
-const testCases = [
-
-
-]
-
-testCases.forEach((test, testNumber) => {
-  let [expected, ...params] = test
-  const returned = filter(...params);
-  const result = returned === expected ? `✅ Passed ` : `❌ Failed`;
-  console.log(`Test ${testNumber + 1} ${result}`)
-  console.log(`Expected: ${expected}`);
-  console.log(`Returned: ${returned}\n`);
-})
