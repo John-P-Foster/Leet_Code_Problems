@@ -34,24 +34,23 @@
  */
 var binaryTreePaths = function(root) {
     const paths = []
-    const stack = [[root, '1']]; 
+    const stack = [[root, []]]; 
 
     while(stack.length > 0){
         let [cur, path] = stack.pop()
 
-        path += cur.val; 
+        path.push(cur.val); 
 
         if(!cur.left && !cur.right){
-            paths.push(path);
+            paths.push(path.join(`->`));
             continue; 
         }
         
-        path += '->';
         if(cur.right){
-            stack.push([cur.right, path])
+            stack.push([cur.right, [...path]])
         }
         if(cur.left){
-            stack.push([cur.left, path])
+            stack.push([cur.left, [...path]])
         }
     }
 
