@@ -54,25 +54,26 @@ var isCousins = function(root, x, y) {
     let xParent = null; 
     let yDepth = -1; 
     let yParent = null
-    let stack = [[root, 0, null]];
+    let queue = [[root, 0, null]];
     
-    while(stack.length > 0){
-        let[currNode, currDepth, prevNode] = stack.pop(); 
+    while(queue.length > 0){
+        let[currNode, currDepth, prevNode] = queue.shift(); 
+        
         if(currNode.val === x){
             xDepth = currDepth; 
-            xParent = prevNode; 
-            if(yDepth != -1) break;    
+            xParent = prevNode;    
         }
         if(currNode.val === y){
             yDepth = currDepth; 
             yParent = prevNode; 
-            if(xDepth != -1) break; 
         }
 
-        if(currNode.right) stack.push([currNode.right, currDepth + 1, currNode]);
-        if(currNode.left) stack.push([currNode.left, currDepth + 1, currNode]); 
+        if(xDepth !== -1 && yDepth !== -1) break; 
+        if(currNode.left) queue.push([currNode.left, currDepth + 1, currNode]); 
+        if(currNode.right) queue.push([currNode.right, currDepth + 1, currNode]);
+
     }
 
-    return xDepth === yDepth && xParent != yParent
+    return xDepth === yDepth && xParent !== yParent
 };
 
