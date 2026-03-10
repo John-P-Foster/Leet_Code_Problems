@@ -1,0 +1,100 @@
+// Given an array of positive integers arr, find a pattern of length m that is repeated k or more times.
+
+// A pattern is a subarray (consecutive sub-sequence) that consists of one or more values, repeated multiple times consecutively without overlapping. A pattern is defined by its length and the number of repetitions.
+
+// Return true if there exists a pattern of length m that is repeated k or more times, otherwise return false.
+
+ 
+
+// Example 1:
+
+// Input: arr = [1,2,4,4,4,4], m = 1, k = 3
+// Output: true
+// Explanation: The pattern (4) of length 1 is repeated 4 consecutive times. Notice that pattern can be repeated k or more times but not less.
+// Example 2:
+
+// Input: arr = [1,2,1,2,1,1,1,3], m = 2, k = 2
+// Output: true
+// Explanation: The pattern (1,2) of length 2 is repeated 2 consecutive times. Another valid pattern (2,1) is also repeated 2 times.
+// Example 3:
+
+// Input: arr = [1,2,1,2,1,3], m = 2, k = 3
+// Output: false
+// Explanation: The pattern (1,2) is of length 2 but is repeated only 2 times. There is no pattern of length 2 that is repeated 3 or more times.
+ 
+
+// Constraints:
+
+// 2 <= arr.length <= 100
+// 1 <= arr[i] <= 100
+// 1 <= m <= 100
+// 2 <= k <= 100
+
+/**
+ * @param {number[]} arr
+ * @param {number} m
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsPattern = function(arr, m, k) {
+
+    let count = 0;
+    for(let i = 0; i < arr.length - m; i++){
+        if(arr[i] === arr[i + m]) count++;
+        else count = 0; 
+        
+        if(count === ((k - 1) * m)) return true; 
+    }
+
+    return false; 
+
+};
+
+/**
+ * @param {number[]} arr
+ * @param {number} m
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsPatternFirst = function(arr, m, k) {
+    let patternLength = m * k; 
+
+    for(let i = 0; i <= arr.length - patternLength; i++){
+        const subSet = arr.slice(i, i + patternLength); 
+
+        let match = true; 
+        const firstChunk = subSet.slice(0, m).toString();
+
+        for(let j = m; j <= subSet.length - m; j+=m){
+            if(firstChunk !== subSet.slice(j, j + m).toString()){
+                match = false;
+                break; 
+            }
+        }
+
+        if(match) return match
+
+    }
+
+
+
+    return false; 
+};
+
+const testCases = [
+    [[1,2,4,4,4,4], 1, 3, true], 
+    [[1,2,1,2,1,1,1,3], 2, 2, true],
+    [[1,2,1,2,1,3], 2, 3, false],
+    [[1,2,1,2,1,2], 2, 3, true],
+
+]
+
+testCases.forEach((test, testNumber) => {
+const expected = test[test.length - 1]; 
+const params = test.slice(0, -1); 
+const returned = containsPattern(...params);
+const result = returned === expected? `✅ Passed ` : `❌ Failed`;
+console.log(`Test ${testNumber + 1} ${result}`)
+console.log(`Expected: ${expected}`);
+console.log(`Returned: ${returned}\n`);
+})
